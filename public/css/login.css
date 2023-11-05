@@ -195,6 +195,12 @@
   margin-bottom: 40px;
 }
 
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .login {
   display: flex;
   flex-direction: column;

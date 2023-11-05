@@ -67,22 +67,34 @@
           <div class="sign-up-header-div">
             <p class="questions-header">Sign Up to Galvanize Health</p>
           </div>
-          <form class="new-user-form" action="" accept-charset="UTF-8" method="post">
+          <form class="new-user-form" action="/sign-up" accept-charset="UTF-8" method="POST">
           <div class="form-field-group">
             <div class="form-field first-field">
-              <fieldset id="name-field" class="input-field"><label for="user-name">Name</label><input autocomplete="name" class="text-input" type="text" name="user[name]" id="user-name"></fieldset>
+              <fieldset id="name-field" class="input-field">
+                <label for="name">Name</label>
+                <input autocomplete="name" class="text-input" type="text" name="name" id="user-name">
+              </fieldset>
             </div>
             <div class="form-field first-field">
-              <fieldset class="input-field"><label for="user_login">Username</label><input autocorrect="off" autocapitalize="off" autocomplete="username" class="text-input" type="text" name="user[login]" id="user_login"></fieldset>
+              <fieldset class="input-field">
+                <label for="username">Username</label>
+                <input autocorrect="off" autocapitalize="off" autocomplete="username" class="text-input" type="text" name="username" id="user_login">
+              </fieldset>
             </div>
           </div>
           <div class="form-field">
-            <fieldset class="input-field"><label for="user-email">Email</label><input class="text-input" type="text" name="user[email]" id="use-_email"></fieldset>
+            <fieldset class="input-field">
+              <label for="email">Email</label>
+              <input class="text-input" type="text" name="email" id="use-_email">
+            </fieldset>
           </div>
           <div class="form-field">
-            <fieldset class="input-field"><label for="user-password">Password</label><input class="text-input" placeholder="6+ characters" type="password" name="user[password]" id="user-password"></fieldset>
+            <fieldset class="input-field">
+              <label for="password">Password</label>
+              <input class="text-input" placeholder="6+ characters" type="password" name="password" id="user-password">
+            </fieldset>
           </div>
-          <div class="form-field">
+          <!-- <div class="form-field">
             <fieldset id="agreement-field">
               <input type="checkbox" id="user-agreement" name="user[agree_to_terms]">
               <label id="user-agreement-label"for="user-agreement">
@@ -92,7 +104,7 @@
                 <a target="_blank" href="">Notification Settings</a>.
               </label>
             </fieldset>
-          </div>
+          </div> -->
           <div class="form-btns">
             <button type="submit" data-disable-with="Create Account">Create Account</button>
           </div>

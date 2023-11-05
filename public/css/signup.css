@@ -227,6 +227,13 @@
   outline: none;
 }
 
+.text-input:hover {
+  border-color: rgba(8, 129, 120, 0.4);
+  box-shadow: 0 0 0 4px rgba(8, 129, 120, 0.1);
+  outline: none;
+  transition: 0.75s;
+}
+
 .first-field {
   width: 100%;
 }

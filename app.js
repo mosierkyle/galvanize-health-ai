@@ -1,7 +1,11 @@
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const express = require('express');
-const User = require('/models/user');
+const User = require('./models/user');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 //Server and Database connection
@@ -25,46 +29,65 @@ main();
 
 app.set('view engine', 'ejs');
 
-//Authentication
-// passport.use(
-//   new LocalStrategy(async (username, password, done) => {
-//     try {
-//       const user = await User.findOne({ username: username });
-//       if (!user) {
-//         return done(null, false, { message: 'Incorrect username' });
-//       }
-//       const match = await bcrypt.compare(password, user.password);
-//       if (!match) {
-//         return done(null, false, { message: 'Incorrect password' });
-//       }
-//       return done(null, user);
-//     } catch (err) {
-//       return done(err);
-//     }
-//   })
-// );
+// Authentication
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const user = await User.findOne({ username: username });
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username' });
+      }
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        return done(null, false, { message: 'Incorrect password' });
+      }
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  })
+);
 
-// passport.serializeUser((user, done) => {
-//   done(null, user.id);
-// });
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-// passport.deserializeUser(async (id, done) => {
-//   try {
-//     const user = await User.findById(id);
-//     done(null, user);
-//   } catch (err) {
-//     done(err);
-//   }
-// });
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
 
 //Middleware
+app.use(
+  session({ secret: 'galvanize', resave: false, saveUninitialized: true })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(morgan('dev'));
 app.use(express.static('public/css'));
 app.use(express.static('public/scripts'));
 app.use(express.static('public/logos'));
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //Routes
+app.get('/health-questions', (req, res) => {
+  res.render('health-questions', { user: res.locals.currentUser });
+});
+
+app.get('/goals-questions', (req, res) => {
+  res.render('goals-questions', { user: res.locals.currentUser });
+});
+
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -76,3 +99,37 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
   res.render('signup');
 });
+
+app.get('/authenticated', (req, res) => {
+  if (res.locals.currentUser) {
+    console.log('someone logged in');
+    res.render('authenticated', { user: res.locals.currentUser });
+  } else {
+    res.render('401');
+  }
+});
+
+app.post('/sign-up', async (req, res, next) => {
+  try {
+    bcrypt.hash(req.body.password, 8, async (err, hashedPassword) => {
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        password: hashedPassword,
+      });
+      const result = await user.save();
+    });
+    res.redirect('health-questions');
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: 'authenticated',
+    failureRedirect: 'signup',
+  })
+);

@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
+#main-container {
+  display: grid;
+  grid-template-rows: minmax(75px, 1fr) 6fr minmax(100px, 1fr);
+  height: 100vh;
+}
+
+#header-div {
+  grid-row: 1 / 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#logo-div {
+  padding: 24px 24px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#logo-link {
+  position: relative;
+  overflow: hidden;
+}
+
+#logo-link:hover {
+  cursor: pointer;
+}
+
+#logo {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: -50px;
+}
+
+#body-div {
+  grid-row: 2 / 3;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#content {
+  min-width: 600px;
+  padding: 40px 20px;
+  font-family: 'Mona Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.health-slide {
+}
+
+.health-btns {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.continue {
+  padding: 10px 20px;
+  border-radius: 9999999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #0d0c22;
+  color: #fff;
+  height: 48px;
+  border: none;
+  text-align: center;
+}
+
+.continue:hover {
+  background-color: rgb(80, 80, 80);
+  cursor: pointer;
+}
+
+.back {
+  display: none;
+  border: 1.5px solid #e7e7e9;
+  background-color: #fff;
+  box-shadow: none;
+  color: #0d0c22;
+  line-height: 16px;
+  padding: 10px 20px;
+  border-radius: 9999999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 24px;
+  height: 48px;
+}
+
+.back:hover {
+  cursor: pointer;
+  border: 1.5px solid #d5d5d5;
+}
+
+#health1 {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+}
+
+#health1-header-div {
+}
+
+#health1-header {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.25em;
+}
+
+#health1-subheader {
+  margin-top: 17px;
+  color: #6e6d7a;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.health-q-label {
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.health-q-input {
+  margin-top: 20px;
+  font-size: 17px;
+  color: #000;
+  font-family: 'Mona Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+.health-q-input:focus {
+  border-bottom: 1px solid rgba(8, 129, 120, 0.4);
+  box-shadow: 0 0 0 4px rgba(8, 129, 120, 0.1);
+  outline: none;
+}
+
+.health-q-input:focus-visible {
+  border-color: rgba(8, 129, 120, 0.4);
+  box-shadow: 0 0 0 4px rgba(8, 129, 120, 0.1);
+  outline: none;
+}
+
+.health-q-div {
+  display: block;
+}
+
+#footer-div {
+  grid-row: 3 / 4;
+  height: 100%;
+  max-height: 100px;
+  overflow: hidden;
+  background-image: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+#footer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 25% 50%;
+  transform: scale(1);
+}
