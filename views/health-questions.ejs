@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health</title>
     <link rel="stylesheet" href="/health.css">
-    <script src="" defer></script>
+    <script src="/healthScript.js" defer></script>
 </head>
 <body>
     <div id="main-container">
@@ -28,10 +28,16 @@
                             <p class="health-q-label">Add your age</p>
                             <input class="health-q-input" type="text">
                         </div>
-                        <div class="health-btns">
-                            <button class="back" type="button">Back</button>
-                            <button class="continue" type="button">Continue</button>
+                    </div>
+                    <div class="health-slide" id="health2">
+                        <div class="health-q-div" id="health2-q-div">
+                            <p class="health-q-label">Add your weight</p>
+                            <input class="health-q-input" type="text">
                         </div>
+                    </div>
+                    <div class="health-btns">
+                        <button id="back" class="back" type="button">Back</button>
+                        <button id="continue" class="continue" type="button">Continue</button>
                     </div>
                 </form>
             </div>

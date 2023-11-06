@@ -57,12 +57,27 @@
 }
 
 .health-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+}
+
+#health1 {
+  display: flex;
+  transition: linear 1s;
+}
+
+#health2 {
+  display: none;
+  transition: linear 1s;
 }
 
 .health-btns {
   display: flex;
   justify-content: end;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .continue {
@@ -100,17 +115,6 @@
 .back:hover {
   cursor: pointer;
   border: 1.5px solid #d5d5d5;
-}
-
-#health1 {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  justify-content: center;
-  width: 100%;
-}
-
-#health1-header-div {
 }
 
 #health1-header {
