@@ -1,7 +1,9 @@
 const health1 = document.querySelector('#health1');
 const health2 = document.querySelector('health2');
+const health3 = document.querySelector('health3');
 const continueBtn = document.querySelector('#continue');
 const backBtn = document.querySelector('#back');
+const submitBtn = document.querySelector('#submit');
 
 let currentQ = 1;
 
@@ -15,6 +17,13 @@ const changeQ = (direction) => {
   currentQ === 1
     ? (backBtn.style.display = 'none')
     : (backBtn.style.display = 'inline');
+
+  if (currentQ === 6) {
+    submitBtn.style.display = 'inline';
+    continueBtn.style.display = 'none';
+  } else {
+    submitBtn.style.display = 'none';
+  }
 
   let newQuestion = document.querySelector(`#health${currentQ}`);
   oldQuestion.style.display = 'none';

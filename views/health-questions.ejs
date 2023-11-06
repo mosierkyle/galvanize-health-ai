@@ -18,33 +18,68 @@
         </div>
         <div id="body-div">
             <div id="content">
-                <form action="/healt-info" method="POST">
+                <form action="/health-info" method="POST">
                     <div class="health-slide" id="health1">
                         <div id="health1-header-div">
                             <p id="health1-header">Welcome! Let's create your profile</p>
                             <p id="health1-subheader">Let's get to know you better</p>
                         </div>
                         <div class="health-q-div" id="health1-q-div">
-                            <p class="health-q-label">Add your age</p>
-                            <input class="health-q-input" type="text">
+                            <label for="age" class="health-q-label">Add your age</label>
+                            <input name="age" class="health-q-input" type="text">
                         </div>
                     </div>
                     <div class="health-slide" id="health2">
                         <div class="health-q-div" id="health2-q-div">
-                            <p class="health-q-label">Add your weight</p>
-                            <input class="health-q-input" type="text">
+                            <label for="weight" class="health-q-label">Add your weight</label>
+                            <input name="weight" class="health-q-input" type="text">
+                        </div>
+                    </div>
+                    <div class="health-slide" id="health3">
+                        <div class="health-q-div" id="health3-q-div">
+                            <label for="height" class="health-q-label">Add your height</label>
+                            <input name="height" class="health-q-input" type="text">
+                        </div>
+                    </div>
+                    <div class="health-slide" id="health4">
+                        <div class="health-q-div" id="health4-q-div">
+                            <label for="activity" class="health-q-label">What is your current activity level</label>
+                            <fieldset id="activity-level">      
+                                <select name="activity" id="activity">
+                                    <option>Basal Metabolic Rate (BMR)</option>
+                                    <option>Sedentary: little or no exercise</option>
+                                    <option>Light: exercise 1-3 times/week</option>
+                                    <option selected >Moderate: exercise 4-5 times/week</option>
+                                    <option>Active: daily exercise or intense exercise 3-4 times/week</option>
+                                    <option>Very Active: intense exercise 6-7 times/week</option>
+                                    <option>Extra Active: very intense exercise daily, or physical job</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="health-slide" id="health5">
+                        <div class="health-q-div" id="health5-q-div">
+                            <label for="currentFitness" class="health-q-label">Describe your current fitness routine</label>
+                            <textarea id="current-fitness" name="currentFitness" class="health-q-input" type="text" rows="4" cols="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="health-slide" id="health6">
+                        <div class="health-q-div" id="health6-q-div">
+                            <label for="other" class="health-q-label">Additional comments</label>
+                            <textarea id="other" name="other" class="health-q-input" type="text" rows="4" cols="10"></textarea>
                         </div>
                     </div>
                     <div class="health-btns">
                         <button id="back" class="back" type="button">Back</button>
                         <button id="continue" class="continue" type="button">Continue</button>
+                        <button id="submit" type="submit">Continue</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div id="footer-div">
-                <img id="footer-img"src="https://images.pexels.com/photos/1410157/pexels-photo-1410157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            </div>
+        <div id="footer-div">                
+            <img id="footer-img"src="https://images.pexels.com/photos/1153655/pexels-photo-1153655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+        </div>
     </div>
 </body>
 </html>
