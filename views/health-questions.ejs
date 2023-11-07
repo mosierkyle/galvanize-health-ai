@@ -18,10 +18,10 @@
         </div>
         <div id="body-div">
             <div id="content">
-                <form action="/health-info" method="POST">
+                <form action="/health-info/<%= user._id%>" method="POST">
                     <div class="health-slide" id="health1">
                         <div id="health1-header-div">
-                            <p id="health1-header">Welcome! Let's create your profile</p>
+                            <p id="health1-header">Welcome <%= user.name%>! Let's create your profile</p>
                             <p id="health1-subheader">Let's get to know you better</p>
                         </div>
                         <div class="health-q-div" id="health1-q-div">
@@ -45,7 +45,7 @@
                         <div class="health-q-div" id="health4-q-div">
                             <label for="activity" class="health-q-label">What is your current activity level</label>
                             <fieldset id="activity-level">      
-                                <select name="activity" id="activity">
+                                <select name="activity" id="activity" class="custom-select">
                                     <option>Basal Metabolic Rate (BMR)</option>
                                     <option>Sedentary: little or no exercise</option>
                                     <option>Light: exercise 1-3 times/week</option>

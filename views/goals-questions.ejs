@@ -19,16 +19,52 @@
         <div id="body-div">
             <div id="content">
                 <form action="/goals-info" method="POST">
-                    <div class="health-slide" id="health1">
-                        <div id="health1-header-div">
-                            <p id="health1-header">Awesome! Now let's learn about your goals</p>
-                            <p id="health1-subheader">What do you want to achieve?</p>
+                    <div class="goals-slide" id="goals1">
+                        <div id="goals1-header-div">
+                            <p id="goals1-header">Awesome! Now let's learn about your goals</p>
+                            <p id="goals1-subheader">What do you want to achieve?</p>
                         </div>
+                        <div class="goals-q-div" id="goals1-q-div">
+                            <label for="overall" class="goals-q-label">
+                                Describe your overall health and fitness goals
+                            </label>
+                            <textarea id="overall" name="overall" class="goals-q-input" type="text" rows="4" cols="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="goals-slide" id="goals2">
+                        <div class="goals-q-div" id="goals2-q-div">
+                            <label for="strength" class="goals-q-label">
+                                Describe your strength goals
+                            </label>
+                            <textarea id="strength" name="strength" class="goals-q-input" type="text" rows="4" cols="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="goals-slide" id="goals3">
+                        <div class="goals-q-div" id="goals3-q-div">
+                            <label for="weight" class="goals-q-label">
+                                Describe your weight goals
+                            </label>
+                            <textarea id="weight" name="weight" class="goals-q-input" type="text" rows="4" cols="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="goals-slide" id="goals4">
+                        <div class="goals-q-div" id="goals4-q-div">
+                            <label for="other" class="goals-q-label">
+                                Additional comments about your goals
+                            </label>
+                            <textarea id="other" name="other" class="goals-q-input" type="text" rows="4" cols="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="goals-btns">
+                        <button id="back" class="back" type="button">Back</button>
+                        <button id="continue" class="continue" type="button">Continue</button>
+                        <button id="submit" type="submit">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
         <div id="footer-div">                
-            <img id="footer-img"src="https://images.pexels.com/photos/1153655/pexels-photo-1153655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <img id="footer-img"src="https://images.unsplash.com/photo-1577003833154-a92bbd63ae13?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
     </div>
 </body>

@@ -79,13 +79,63 @@ app.use((req, res, next) => {
   next();
 });
 
-//Routes
+// Routes
+
+app.post('/sign-up', async (req, res, next) => {
+  try {
+    bcrypt.hash(req.body.password, 8, async (err, hashedPassword) => {
+      if (err) {
+        return next(err);
+      }
+
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        password: hashedPassword,
+      });
+
+      try {
+        const result = await user.save();
+
+        req.login(user, (err) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect('/health-questions');
+        });
+      } catch (err) {
+        return next(err);
+      }
+    });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: 'authenticated',
+    failureRedirect: 'signup',
+  })
+);
+
 app.get('/health-questions', (req, res) => {
-  res.render('health-questions', { user: res.locals.currentUser });
+  if (res.locals.currentUser) {
+    res.render('health-questions', { user: res.locals.currentUser });
+  } else {
+    res.render('401');
+  }
 });
 
 app.get('/goals-questions', (req, res) => {
-  res.render('goals-questions', { user: res.locals.currentUser });
+  //   if (res.locals.currentUser) {
+  //     res.render('goals-questions', { user: res.locals.currentUser });
+  //   } else {
+  //     res.render('401');
+  //   }
+  res.render('goals-questions');
 });
 
 app.get('/', (req, res) => {
@@ -100,7 +150,7 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-app.get('/authenticated', (req, res) => {
+app.get('/authenticated', async (req, res) => {
   if (res.locals.currentUser) {
     console.log('someone logged in');
     res.render('authenticated', { user: res.locals.currentUser });
@@ -109,27 +159,31 @@ app.get('/authenticated', (req, res) => {
   }
 });
 
-app.post('/sign-up', async (req, res, next) => {
+app.post('/health-info/:id', async (req, res) => {
+  const id = req.params.id;
+  const newInfo = req.body;
+  console.log(newInfo);
+
   try {
-    bcrypt.hash(req.body.password, 8, async (err, hashedPassword) => {
-      const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        username: req.body.username,
-        password: hashedPassword,
-      });
-      const result = await user.save();
-    });
-    res.redirect('health-questions');
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.health = {
+      age: req.body.age,
+      weight: req.body.weight,
+      height: req.body.height,
+      activity: req.body.activity,
+      currentFitness: req.body.currentFitness,
+      other: req.body.other,
+    };
+
+    await user.save();
+    console.log(user);
+    res.redirect('/goals-questions');
+    console.log('updated');
   } catch (err) {
-    return next(err);
+    console.log(err);
   }
 });
-
-app.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: 'authenticated',
-    failureRedirect: 'signup',
-  })
-);
