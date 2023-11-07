@@ -130,12 +130,15 @@ app.get('/health-questions', (req, res) => {
 });
 
 app.get('/goals-questions', (req, res) => {
-  //   if (res.locals.currentUser) {
-  //     res.render('goals-questions', { user: res.locals.currentUser });
-  //   } else {
-  //     res.render('401');
-  //   }
-  res.render('goals-questions');
+  if (res.locals.currentUser) {
+    res.render('goals-questions', { user: res.locals.currentUser });
+  } else {
+    res.render('401');
+  }
+});
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
 });
 
 app.get('/', (req, res) => {
@@ -182,6 +185,33 @@ app.post('/health-info/:id', async (req, res) => {
     await user.save();
     console.log(user);
     res.redirect('/goals-questions');
+    console.log('updated');
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post('/goals-info/:id', async (req, res) => {
+  const id = req.params.id;
+  const newInfo = req.body;
+  console.log(newInfo);
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.goals = {
+      overall: req.body.overall,
+      strength: req.body.strength,
+      weight: req.body.weight,
+      other: req.body.other,
+    };
+
+    await user.save();
+    console.log(user);
+    res.redirect('/authenticated');
     console.log('updated');
   } catch (err) {
     console.log(err);

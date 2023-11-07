@@ -18,11 +18,12 @@ const changeQ = (direction) => {
     ? (backBtn.style.display = 'none')
     : (backBtn.style.display = 'inline');
 
-  if (currentQ === 4) {
+  if (currentQ !== 4) {
+    submitBtn.style.display = 'none';
+    continueBtn.style.display = 'inline';
+  } else {
     submitBtn.style.display = 'inline';
     continueBtn.style.display = 'none';
-  } else {
-    submitBtn.style.display = 'none';
   }
   console.log(currentQ);
   let newQuestion = document.querySelector(`#goals${currentQ}`);
