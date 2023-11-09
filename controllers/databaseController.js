@@ -1,9 +1,12 @@
 const User = require('../models/user');
 const OpenAI = require('openai');
+require('dotenv').config();
 
 //OpenAi
+const secretAI = process.env.OPENAI_API_KEY;
+
 const openai = new OpenAI({
-  apiKey: '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',
+  apiKey: secretAI,
 });
 
 //ai functions
@@ -36,27 +39,11 @@ async function sendFitnessChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a fitness plan for this user based upon this information about them ${userSummary}. Only include information about a fitness plan, nutrition and diet will be covered elsewhere`,
+        content: `Generate a fitness plan for this user based upon this information about them ${userSummary}. Only include information about a fitness plan, nutrition and diet will be covered elsewhere. Do not introduce your response, just get right into the content`,
       },
     ];
 
-    const fitnessExtraPrompt = [
-      {
-        role: 'system',
-        content:
-          'You are a helpful assistant that is very knowledgable about health and fitness, you are basically a personal trainer/ health coach.',
-      },
-      {
-        role: 'user',
-        content: `Generate additional details and things to keep in mind for a fitness plan for this user based upon this information about them ${userSummary}.`,
-      },
-    ];
-
-    const messages = [
-      [...fitnessTitlePrompt],
-      [...fitnessBodyPrompt],
-      [...fitnessExtraPrompt],
-    ];
+    const messages = [[...fitnessTitlePrompt], [...fitnessBodyPrompt]];
 
     const responseTitle = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -67,19 +54,12 @@ async function sendFitnessChatRequest(id) {
     const responseBody = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages[1],
-      max_tokens: 500,
-    });
-
-    const responseExtra = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: messages[2],
-      max_tokens: 100,
+      max_tokens: 1000,
     });
 
     user.fitnessPlan = {
       title: responseTitle.choices[0].message.content,
       body: responseBody.choices[0].message.content,
-      extra: responseExtra.choices[0].message.content,
     };
 
     await user.save();
@@ -117,27 +97,11 @@ async function sendDietChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a diet plan for this user based upon this information about them ${userSummary}. Only include information about a diet plan, nutrition and fitness will be covered elsewhere`,
+        content: `Generate a diet plan for this user based upon this information about them ${userSummary}. Only include information about a diet plan, nutrition and fitness will be covered elsewhere. Do not introduce your response, get right into the content`,
       },
     ];
 
-    const dietExtraPrompt = [
-      {
-        role: 'system',
-        content:
-          'You are a helpful assistant that is very knowledgable about health and fitness, you are basically a personal trainer/ health coach.',
-      },
-      {
-        role: 'user',
-        content: `Generate additional details and things to keep in mind for a diet plan for this user based upon this information about them ${userSummary}.`,
-      },
-    ];
-
-    const messages = [
-      [...dietTitlePrompt],
-      [...dietBodyPrompt],
-      [...dietExtraPrompt],
-    ];
+    const messages = [[...dietTitlePrompt], [...dietBodyPrompt]];
 
     const responseTitle = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -148,19 +112,12 @@ async function sendDietChatRequest(id) {
     const responseBody = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages[1],
-      max_tokens: 500,
-    });
-
-    const responseExtra = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: messages[2],
-      max_tokens: 100,
+      max_tokens: 1000,
     });
 
     user.dietPlan = {
       title: responseTitle.choices[0].message.content,
       body: responseBody.choices[0].message.content,
-      extra: responseExtra.choices[0].message.content,
     };
 
     await user.save();
@@ -186,7 +143,7 @@ async function sendNutritionChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a title for a Nutrition plan for this user based upon this information about them ${userSummary}. Nutrition means supplimentation, vitamins, etc.`,
+        content: `Generate a title for a Nutrition/supplementaion plan for this user based upon this information about them ${userSummary}. Nutrition means supplimentation, vitamins, etc.`,
       },
     ];
 
@@ -198,27 +155,11 @@ async function sendNutritionChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a nutrition plan for this user based upon this information about them ${userSummary}. Only include information about a diet plan, diet and fitness will be covered elsewhere. Nutrition means supplimentation, vitamins, etc.`,
+        content: `Generate a Supplementation/nutrition plan for this user based upon this information about them ${userSummary}. Only include information about supplementation/vitamins/nutrition in the plan, diet and fitness will be covered elsewhere. Nutrition means supplimentation, vitamins, etc. Do not introduce your response, get right into the content`,
       },
     ];
 
-    const nutritionExtraPrompt = [
-      {
-        role: 'system',
-        content:
-          'You are a helpful assistant that is very knowledgable about health and fitness, you are basically a personal trainer/ health coach.',
-      },
-      {
-        role: 'user',
-        content: `Generate additional details and things to keep in mind for a nutrition plan for this user based upon this information about them ${userSummary}. Nutrition means supplimentation, vitamins, etc.`,
-      },
-    ];
-
-    const messages = [
-      [...nutritionTitlePrompt],
-      [...nutritionBodyPrompt],
-      [...nutritionExtraPrompt],
-    ];
+    const messages = [[...nutritionTitlePrompt], [...nutritionBodyPrompt]];
 
     const responseTitle = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -232,16 +173,9 @@ async function sendNutritionChatRequest(id) {
       max_tokens: 500,
     });
 
-    const responseExtra = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: messages[2],
-      max_tokens: 100,
-    });
-
     user.nutritionPlan = {
       title: responseTitle.choices[0].message.content,
       body: responseBody.choices[0].message.content,
-      extra: responseExtra.choices[0].message.content,
     };
 
     await user.save();
@@ -301,10 +235,10 @@ const goals_post = async (req, res) => {
 
     await user.save();
     console.log(user);
-    res.redirect('/dashboard');
     await sendFitnessChatRequest(id);
     await sendDietChatRequest(id);
     await sendNutritionChatRequest(id);
+    res.redirect('/dashboard');
   } catch (err) {
     console.log(err);
   }
