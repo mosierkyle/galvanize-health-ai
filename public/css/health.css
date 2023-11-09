@@ -89,6 +89,18 @@
   display: none;
 }
 
+#health7 {
+  display: none;
+}
+
+#health8 {
+  display: none;
+}
+
+#health9 {
+  display: none;
+}
+
 .health-btns {
   display: flex;
   justify-content: end;
@@ -198,7 +210,7 @@
   display: block;
 }
 
-#activity-level {
+.select-level {
   border: none;
   margin-top: 20px;
   font-size: 17px;
@@ -210,7 +222,7 @@
   width: 100%;
 }
 
-#activity {
+.select {
   border: none;
   font-size: 17px;
   color: #000;
@@ -219,12 +231,12 @@
   width: 100%;
 }
 
-#activity:focus {
+.select:focus {
   box-shadow: 0 0 0 4px rgba(8, 129, 120, 0.1);
   outline: none;
 }
 
-#activity:focus-visible {
+.select:focus-visible {
   border-color: rgba(8, 129, 120, 0.4);
   box-shadow: 0 0 0 4px rgba(8, 129, 120, 0.1);
   outline: none;
@@ -235,6 +247,18 @@
 }
 
 #other {
+  border: 1px solid #e0e0e0;
+}
+
+#time-availability {
+  border: 1px solid #e0e0e0;
+}
+
+#preffered-exercise {
+  border: 1px solid #e0e0e0;
+}
+
+#limitations {
   border: 1px solid #e0e0e0;
 }
 

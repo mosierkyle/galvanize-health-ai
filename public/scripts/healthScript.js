@@ -18,11 +18,12 @@ const changeQ = (direction) => {
     ? (backBtn.style.display = 'none')
     : (backBtn.style.display = 'inline');
 
-  if (currentQ === 6) {
+  if (currentQ !== 9) {
+    submitBtn.style.display = 'none';
+    continueBtn.style.display = 'inline';
+  } else {
     submitBtn.style.display = 'inline';
     continueBtn.style.display = 'none';
-  } else {
-    submitBtn.style.display = 'none';
   }
 
   let newQuestion = document.querySelector(`#health${currentQ}`);

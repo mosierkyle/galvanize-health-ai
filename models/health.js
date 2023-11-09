@@ -5,7 +5,10 @@ const healthSchema = new mongoose.Schema({
   weight: { type: String, required: false },
   height: { type: String, required: false },
   activity: { type: String, required: false },
-  currentFitness: { type: String, required: false },
+  skillLevel: { type: String, required: false },
+  timeAvailability: { type: String, required: false },
+  prefferedExercise: { type: String, required: false },
+  limitations: { type: String, required: false },
   other: { type: String, required: false },
 });
 
