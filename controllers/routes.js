@@ -16,7 +16,13 @@ router.get('/login', pageController.login_get);
 
 router.get('/signup', pageController.signup_get);
 
-router.get('/authenticated', pageController.authenticated_get);
+router.get('/loading', pageController.loading_get);
+
+router.get('/workout', pageController.workout_get);
+
+router.get('/diet', pageController.diet_get);
+
+router.get('/nutrition', pageController.nutrition_get);
 
 //posts
 router.post('/health-info/:id', databaseController.health_post);

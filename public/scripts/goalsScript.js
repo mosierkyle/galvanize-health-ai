@@ -4,6 +4,8 @@ const goals3 = document.querySelector('goals3');
 const continueBtn = document.querySelector('#continue');
 const backBtn = document.querySelector('#back');
 const submitBtn = document.querySelector('#submit');
+const loadingContainer = document.querySelector('#loading-main-container');
+const mainContainer = document.querySelector('#main-container');
 
 let currentQ = 1;
 
@@ -38,6 +40,11 @@ const addEvents = () => {
 
   backBtn.addEventListener('click', () => {
     changeQ(0);
+  });
+
+  submitBtn.addEventListener('click', () => {
+    mainContainer.style.display = 'none';
+    loadingContainer.style.display = 'grid';
   });
 };
 

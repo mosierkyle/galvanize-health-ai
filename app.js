@@ -91,8 +91,8 @@ app.post('/sign-up', async (req, res, next) => {
       }
 
       const user = new User({
-        name: req.body.name,
-        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
         password: hashedPassword,
       });
@@ -115,10 +115,17 @@ app.post('/sign-up', async (req, res, next) => {
   }
 });
 
+// app.post('/login', (req, res, next) => {
+//   passport.authenticate('local', {
+//     successRedirect: 'dashboard',
+//     failureRedirect: 'signup',
+//   });
+// });
+
 app.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: 'authenticated',
+    successRedirect: 'dashboard',
     failureRedirect: 'signup',
   })
 );

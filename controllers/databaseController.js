@@ -155,7 +155,7 @@ async function sendNutritionChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a Supplementation/nutrition plan for this user based upon this information about them ${userSummary}. Only include information about supplementation/vitamins/nutrition in the plan, diet and fitness will be covered elsewhere. Nutrition means supplimentation, vitamins, etc. Do not introduce your response, get right into the content`,
+        content: `Generate a Supplementation plan for this user based upon this information about them ${userSummary}. Only include information about supplementation/vitamins in the plan, diet and fitness will be covered elsewhere. Nutrition means supplimentation, vitamins, etc. Do not introduce your response, get right into the content`,
       },
     ];
 
@@ -186,8 +186,6 @@ async function sendNutritionChatRequest(id) {
 
 const health_post = async (req, res) => {
   const id = req.params.id;
-  const newInfo = req.body;
-  console.log(newInfo);
 
   try {
     const user = await User.findById(id);
@@ -208,7 +206,6 @@ const health_post = async (req, res) => {
     };
 
     await user.save();
-    console.log(user);
     res.redirect('/goals-questions');
   } catch (err) {
     console.log(err);
@@ -217,8 +214,6 @@ const health_post = async (req, res) => {
 
 const goals_post = async (req, res) => {
   const id = req.params.id;
-  const newInfo = req.body;
-  console.log(newInfo);
 
   try {
     const user = await User.findById(id);
@@ -234,10 +229,17 @@ const goals_post = async (req, res) => {
     };
 
     await user.save();
-    console.log(user);
+    console.log('Before sending fitness chat request');
     await sendFitnessChatRequest(id);
+    console.log('After sending fitness chat request');
+
+    console.log('Before sending diet chat request');
     await sendDietChatRequest(id);
+    console.log('After sending diet chat request');
+
+    console.log('Before sending nutrition chat request');
     await sendNutritionChatRequest(id);
+    console.log('After sending nutrition chat request');
     res.redirect('/dashboard');
   } catch (err) {
     console.log(err);
@@ -247,4 +249,7 @@ const goals_post = async (req, res) => {
 module.exports = {
   health_post,
   goals_post,
+  sendNutritionChatRequest,
+  sendDietChatRequest,
+  sendFitnessChatRequest,
 };
