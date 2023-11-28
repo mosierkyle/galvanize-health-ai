@@ -38,6 +38,10 @@ const addEvents = () => {
     changeQ(1);
   });
 
+  // window.addEventListener('keypress', () => {
+  //   changeQ(1);
+  // })
+
   backBtn.addEventListener('click', () => {
     changeQ(0);
   });
