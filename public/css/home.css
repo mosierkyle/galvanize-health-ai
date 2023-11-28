@@ -225,7 +225,7 @@ body {
 #about-header {
   font-size: 1.75rem;
   font-weight: 300;
-  background-color: rgba(8, 129, 120, 0.7);
+  background-color: rgb(8, 129, 120);
   color: white;
   border-radius: 20px;
   padding: 0.75rem 1.25rem;
@@ -368,7 +368,7 @@ body {
 
 .more-header p {
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -422,7 +422,7 @@ body {
 #services-header {
   font-size: 1.75rem;
   font-weight: 300;
-  background-color: rgba(8, 129, 120, 0.7);
+  background-color: rgb(8, 129, 120);
   color: white;
   border-radius: 20px;
   padding: 0.75rem 1.25rem;
@@ -460,7 +460,7 @@ body {
 }
 
 .service-title-div p {
-  font-size: 2rem;
+  font-size: 30px;
   font-weight: 500;
   text-align: center;
 }

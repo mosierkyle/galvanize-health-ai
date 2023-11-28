@@ -204,6 +204,7 @@
   padding: 30px;
   gap: 20px;
   overflow: scroll;
+  border-radius: 5px;
 }
 
 #plan-header {
@@ -217,4 +218,93 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5rem;
+}
+
+#diet-word {
+  transition: border-bottom none;
+  color: rgba(8, 129, 120, 1);
+}
+
+#diet-svg {
+  color: rgba(8, 129, 120, 1);
+}
+
+@media screen and (max-width: 949px) {
+  #main-container {
+    grid-template-columns: 65px 10fr;
+    transition: grid-template-columns 0.25s ease;
+  }
+
+  #logo-div {
+    display: none;
+    transition: display 0.25s ease;
+  }
+
+  .menu-item {
+    display: none;
+    transition: display 0.25s ease;
+  }
+
+  #sidebar {
+    grid-template-rows: 5fr 1fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+
+  #content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* padding-top: calc(100% - 100px); */
+    overflow: scroll;
+    column-gap: 0;
+  }
+
+  .panel {
+    max-width: 75%;
+    min-height: 250px;
+  }
+  #welcome {
+    line-height: 18px;
+    transition: line-height 0.5s ease;
+  }
+
+  #welcome-text {
+    font-size: 18px;
+    transition: font-size 0.5s ease;
+  }
+
+  #user {
+    font-size: 18px;
+    transition: font-size 0.5s ease;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #welcome {
+    line-height: 24px;
+    transition: line-height 0.5s ease;
+  }
+
+  #welcome-text {
+    font-size: 24px;
+    transition: font-size 0.5s ease;
+  }
+
+  #user {
+    font-size: 24px;
+    transition: font-size 0.5s ease;
+  }
+
+  #search-bar-div {
+    display: none;
+  }
+  #header {
+    display: flex;
+    justify-content: center;
+  }
+
+  #icons {
+    display: none;
+  }
 }

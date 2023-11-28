@@ -18,7 +18,7 @@
     <div id="main-container">
         <div id="header">
             <div id="welcome">
-                <div id="welcome-text">Welcome back <span id="user">Kyle</span></div>
+                <div id="welcome-text"><span id="user"><%= user.firstName %>'s</span> Fitness Plan</div>
             </div>
             <div id="search">
                 <div id="search-bar-div">
@@ -42,28 +42,32 @@
                     <a href="/dashboard" class="item">
                         <li class="item"><span class="list-svg material-symbols-outlined">
                             grid_view
-                            </span>   Dashboard
+                            </span>   
+                            <span class="menu-item">Dashboard</span>
                         </li>
                     </a>
-                    <a href="/workout" class="item">
-                        <li class="item">
+                    <a id="workout-item" href="/workout" class="item">
+                        <li id="workout-svg" class="item">
                             <span class="list-svg material-symbols-outlined">
                             exercise
-                            </span>   Workout
+                            </span>   
+                            <span id="workout-word"class="menu-item">Workout</span>
                         </li>
                     </a>
                     <a href="/diet" class="item">
                         <li class="item">
                             <span class="list-svg material-symbols-outlined">
                             restaurant
-                            </span>   Diet
+                            </span>   
+                            <span class="menu-item">Diet</span>
                         </li>
                     </a>
                     <a href="/nutrition" class="item">
                         <li class="item">
                             <span class="list-svg material-symbols-outlined">
                                 pill
-                                </span>   Nutrition
+                                </span>   
+                                <span class="menu-item">Nutrition</span>
                         </li>
                     </a>
                 </ul>
@@ -72,7 +76,7 @@
                 <span class="list-svg material-symbols-outlined">
                     logout
                     </span>
-                <p class="item" id="logout">Logout</p>
+                <p class="item menu-item" id="logout">Logout</p>
             </div>
         </div>
         <div id="content">

@@ -317,11 +317,13 @@
   font-size: 0.8rem;
   color: #908f92;
   width: 70%;
+  display: none;
 }
 
 .recap-terms a {
   color: rgb(0, 0, 0);
   text-decoration: none;
+  display: none;
 }
 
 #back-btn {
