@@ -84,6 +84,15 @@ const nutrition_get = (req, res) => {
   res.render('nutrition', { user: res.locals.currentUser });
 };
 
+const user_logout = (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+};
+
 module.exports = {
   health_questions_get,
   goals_questions_get,
@@ -95,4 +104,5 @@ module.exports = {
   workout_get,
   diet_get,
   nutrition_get,
+  user_logout,
 };

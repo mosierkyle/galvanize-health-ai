@@ -29,4 +29,6 @@ router.post('/health-info/:id', databaseController.health_post);
 
 router.post('/goals-info/:id', databaseController.goals_post);
 
+router.post('/logout', pageController.user_logout);
+
 module.exports = router;
