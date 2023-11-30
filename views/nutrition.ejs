@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="/nutritionScript.js" defer></script>
 </head>
 <body>
     <div id="main-container">
@@ -72,11 +73,13 @@
                     </a>
                 </ul>
               </div>
-            <div id="logout-div">
-                <span class="list-svg material-symbols-outlined">
+              <div id="logout-div" class="item">
+                <form id="logout-form" method="post" action="logout">
+                    <span class="list-svg material-symbols-outlined">
                     logout
                     </span>
-                <p class="item menu-item" id="logout">Logout</p>
+                    <p class="item menu-item" id="logout">Logout</p>
+                </form>
             </div>
         </div>
         <div id="content">
