@@ -266,7 +266,7 @@ const generateWorkoutPDF = async (req, res) => {
     `;
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
     await page.setContent(content, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
@@ -299,12 +299,12 @@ const generateDietPDF = async (req, res) => {
 
     // Construct the content for the PDF
     const content = `
-      <h1>${user.fitnessPlan.title}</h1>
-      <p>${user.fitnessPlan.body}</p>
+      <h1>${user.dietPlan.title}</h1>
+      <p>${user.dietPlan.body}</p>
     `;
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
     await page.setContent(content, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
@@ -334,12 +334,12 @@ const generateNutritionPDF = async (req, res) => {
 
     // Construct the content for the PDF
     const content = `
-      <h1>${user.fitnessPlan.title}</h1>
-      <p>${user.fitnessPlan.body}</p>
+      <h1>${user.nutritionPlan.title}</h1>
+      <p>${user.nutritionPlan.body}</p>
     `;
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
     await page.setContent(content, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'Letter' });

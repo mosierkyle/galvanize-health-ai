@@ -93,6 +93,10 @@ const user_logout = (req, res, next) => {
   });
 };
 
+const error_get = (req, res) => {
+  res.render('error');
+};
+
 module.exports = {
   health_questions_get,
   goals_questions_get,
@@ -105,4 +109,5 @@ module.exports = {
   diet_get,
   nutrition_get,
   user_logout,
+  error_get,
 };

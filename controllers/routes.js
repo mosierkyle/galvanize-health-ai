@@ -30,6 +30,8 @@ router.get('/dietPDF/:id', databaseController.generateDietPDF);
 
 router.get('/nutritionPDF/:id', databaseController.generateNutritionPDF);
 
+router.get('/error', pageController.error_get);
+
 //posts
 router.post('/health-info/:id', databaseController.health_post);
 
