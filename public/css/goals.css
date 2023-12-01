@@ -200,7 +200,6 @@
   object-position: 25% 45%;
 }
 
-/* loading stuff */
 #loading-main-container {
   display: none;
   grid-template-rows: 6fr minmax(100px, 1fr);
@@ -223,8 +222,8 @@
 }
 
 .loader {
-  border: 16px solid rgb(244, 244, 251); /* Light grey */
-  border-top: 16px solid rgba(8, 129, 120, 1); /* Blue */
+  border: 16px solid rgb(244, 244, 251);
+  border-top: 16px solid rgba(8, 129, 120, 1);
   border-radius: 50%;
   width: 150px;
   height: 150px;
@@ -254,5 +253,4 @@
   height: 100%;
   object-fit: cover;
   object-position: 25% 80%;
-  /* transform: rotate(90deg); */
 }

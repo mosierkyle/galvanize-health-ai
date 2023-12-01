@@ -18,9 +18,6 @@ const events = () => {
 
   hamburger.addEventListener('click', () => {
     linkList.style.top = '0';
-    // login.style.backgroundColor = 'black';
-    // login.style.padding = '0.5rem 0';
-    // login.style.listStyle = '0.5rem 0';
   });
 
   x.addEventListener('click', () => {

@@ -80,6 +80,11 @@ app.use((req, res, next) => {
   next();
 });
 
+//miscellaneous
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 // Routes
 app.use(routes);
 
@@ -91,8 +96,8 @@ app.post('/sign-up', async (req, res, next) => {
       }
 
       const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        firstName: capitalizeFirstLetter(req.body.firstName),
+        lastName: capitalizeFirstLetter(req.body.lastName),
         username: req.body.username,
         password: hashedPassword,
       });
@@ -114,13 +119,6 @@ app.post('/sign-up', async (req, res, next) => {
     return next(err);
   }
 });
-
-// app.post('/login', (req, res, next) => {
-//   passport.authenticate('local', {
-//     successRedirect: 'dashboard',
-//     failureRedirect: 'signup',
-//   });
-// });
 
 app.post(
   '/login',
