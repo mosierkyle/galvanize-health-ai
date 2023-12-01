@@ -99,6 +99,10 @@
   display: none;
 }
 
+#health10 {
+  display: none;
+}
+
 .health-btns {
   display: flex;
   justify-content: end;

@@ -18,7 +18,7 @@ const changeQ = (direction) => {
     ? (backBtn.style.display = 'none')
     : (backBtn.style.display = 'inline');
 
-  if (currentQ !== 9) {
+  if (currentQ !== 10) {
     submitBtn.style.display = 'none';
     continueBtn.style.display = 'inline';
   } else {

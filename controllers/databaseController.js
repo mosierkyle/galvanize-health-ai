@@ -18,7 +18,7 @@ async function sendFitnessChatRequest(id) {
       return console.status(404).json({ message: 'User not found' });
     }
 
-    const userSummary = `This user is ${user.health.age} years old, this height ${user.health.height}, this weight ${user.health.weight}, this user's current activity level is this ${user.health.activity}, this user's fitness skill level / knowledge level is ${user.health.skillLevel}, this user's time availability is ${user.health.timeAvailability}, this user's preffered type of exercise(s) is/are ${user.health.prefferedExercise}, this user's limitations are ${user.health.limitations}, these are additional comments made by the user about their current health and fitess ${user.health.other}. These are the users goals: overall goals ${user.goals.overall}, strength goals ${user.goals.strength}, weight goals ${user.goals.weight}, other goals ${user.goals.other}`;
+    const userSummary = `This user is ${user.health.age} years old, this height ${user.health.height}, this gender ${user.health.gender}, this weight ${user.health.weight}, this user's current activity level is this ${user.health.activity}, this user's fitness skill level / knowledge level is ${user.health.skillLevel}, this user's time availability is ${user.health.timeAvailability}, this user's preffered type of exercise(s) is/are ${user.health.prefferedExercise}, this user's limitations are ${user.health.limitations}, these are additional comments made by the user about their current health and fitess ${user.health.other}. These are the users goals: overall goals ${user.goals.overall}, strength goals ${user.goals.strength}, weight goals ${user.goals.weight}, other goals ${user.goals.other}`;
 
     const fitnessTitlePrompt = [
       {
@@ -76,7 +76,7 @@ async function sendDietChatRequest(id) {
       return console.status(404).json({ message: 'User not found' });
     }
 
-    const userSummary = `This user is ${user.health.age} years old, this height ${user.health.height}, this weight ${user.health.weight}, this user's current activity level is this ${user.health.activity}, this user's fitness skill level / knowledge level is ${user.health.skillLevel}, this user's time availability is ${user.health.timeAvailability}, this user's preffered type of exercise(s) is/are ${user.health.prefferedExercise}, this user's limitations are ${user.health.limitations}, these are additional comments made by the user about their current health and fitess ${user.health.other}. These are the users goals: overall goals ${user.goals.overall}, strength goals ${user.goals.strength}, weight goals ${user.goals.weight}, other goals ${user.goals.other}`;
+    const userSummary = `This user is ${user.health.age} years old, this height ${user.health.height}, this gender ${user.health.gender}, this weight ${user.health.weight}, this user's current activity level is this ${user.health.activity}, this user's fitness skill level / knowledge level is ${user.health.skillLevel}, this user's time availability is ${user.health.timeAvailability}, this user's preffered type of exercise(s) is/are ${user.health.prefferedExercise}, this user's limitations are ${user.health.limitations}, these are additional comments made by the user about their current health and fitess ${user.health.other}. These are the users goals: overall goals ${user.goals.overall}, strength goals ${user.goals.strength}, weight goals ${user.goals.weight}, other goals ${user.goals.other}`;
 
     const dietTitlePrompt = [
       {
@@ -134,7 +134,7 @@ async function sendNutritionChatRequest(id) {
       return console.status(404).json({ message: 'User not found' });
     }
 
-    const userSummary = `This user is ${user.health.age} years old, this height ${user.health.height}, this weight ${user.health.weight}, this user's current activity level is this ${user.health.activity}, this user's fitness skill level / knowledge level is ${user.health.skillLevel}, this user's time availability is ${user.health.timeAvailability}, this user's preffered type of exercise(s) is/are ${user.health.prefferedExercise}, this user's limitations are ${user.health.limitations}, these are additional comments made by the user about their current health and fitess ${user.health.other}. These are the users goals: overall goals ${user.goals.overall}, strength goals ${user.goals.strength}, weight goals ${user.goals.weight}, other goals ${user.goals.other}`;
+    const userSummary = `This user is ${user.health.age} years old, this height ${user.health.height}, this gender ${user.health.gender}, this weight ${user.health.weight}, this user's current activity level is this ${user.health.activity}, this user's fitness skill level / knowledge level is ${user.health.skillLevel}, this user's time availability is ${user.health.timeAvailability}, this user's preffered type of exercise(s) is/are ${user.health.prefferedExercise}, this user's limitations are ${user.health.limitations}, these are additional comments made by the user about their current health and fitess ${user.health.other}. These are the users goals: overall goals ${user.goals.overall}, strength goals ${user.goals.strength}, weight goals ${user.goals.weight}, other goals ${user.goals.other}`;
 
     const nutritionTitlePrompt = [
       {
@@ -197,6 +197,7 @@ const health_post = async (req, res) => {
 
     user.health = {
       age: req.body.age,
+      gender: req.body.gender,
       weight: req.body.weight,
       height: req.body.height,
       activity: req.body.activity,

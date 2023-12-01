@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const healthSchema = new mongoose.Schema({
   age: { type: String, required: false },
+  gender: { type: String, required: false },
   weight: { type: String, required: false },
   height: { type: String, required: false },
   activity: { type: String, required: false },
