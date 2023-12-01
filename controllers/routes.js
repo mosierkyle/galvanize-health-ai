@@ -24,6 +24,12 @@ router.get('/diet', pageController.diet_get);
 
 router.get('/nutrition', pageController.nutrition_get);
 
+router.get('/workoutPDF/:id', databaseController.generateWorkoutPDF);
+
+router.get('/dietPDF/:id', databaseController.generateDietPDF);
+
+router.get('/nutritionPDF/:id', databaseController.generateNutritionPDF);
+
 //posts
 router.post('/health-info/:id', databaseController.health_post);
 

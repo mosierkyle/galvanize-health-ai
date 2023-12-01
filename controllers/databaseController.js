@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const OpenAI = require('openai');
+const puppeteer = require('puppeteer');
 require('dotenv').config();
 
 //OpenAi
@@ -247,10 +248,125 @@ const goals_post = async (req, res) => {
   }
 };
 
+//pdf functions
+const generateWorkoutPDF = async (req, res) => {
+  const id = req.params.id;
+  try {
+    // Fetch user data from MongoDB
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Construct the content for the PDF
+    const content = `
+      <h1>${user.fitnessPlan.title}</h1>
+      <p>${user.fitnessPlan.body}</p>
+    `;
+
+    // Generate PDF using Puppeteer
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(content, { waitUntil: 'domcontentloaded' });
+    const pdfBuffer = await page.pdf({ format: 'Letter' });
+
+    // Close the browser
+    await browser.close();
+
+    // Send the PDF as a response
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=Fitness-plan.pdf'
+    );
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+const generateDietPDF = async (req, res) => {
+  const id = req.params.id;
+  try {
+    // Fetch user data from MongoDB
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Construct the content for the PDF
+    const content = `
+      <h1>${user.fitnessPlan.title}</h1>
+      <p>${user.fitnessPlan.body}</p>
+    `;
+
+    // Generate PDF using Puppeteer
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(content, { waitUntil: 'domcontentloaded' });
+    const pdfBuffer = await page.pdf({ format: 'Letter' });
+
+    // Close the browser
+    await browser.close();
+
+    // Send the PDF as a response
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=Diet-plan.pdf');
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+const generateNutritionPDF = async (req, res) => {
+  const id = req.params.id;
+  try {
+    // Fetch user data from MongoDB
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Construct the content for the PDF
+    const content = `
+      <h1>${user.fitnessPlan.title}</h1>
+      <p>${user.fitnessPlan.body}</p>
+    `;
+
+    // Generate PDF using Puppeteer
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(content, { waitUntil: 'domcontentloaded' });
+    const pdfBuffer = await page.pdf({ format: 'Letter' });
+
+    // Close the browser
+    await browser.close();
+
+    // Send the PDF as a response
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=Nutrition-plan.pdf'
+    );
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   health_post,
   goals_post,
   sendNutritionChatRequest,
   sendDietChatRequest,
   sendFitnessChatRequest,
+  generateWorkoutPDF,
+  generateDietPDF,
+  generateNutritionPDF,
 };
