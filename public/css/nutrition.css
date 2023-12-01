@@ -166,7 +166,7 @@
 
 .item:hover {
   cursor: pointer;
-  color: rgba(13, 12, 34, 0.75);
+  color: rgba(8, 129, 120, 1);
 }
 
 .list-svg {
@@ -217,7 +217,7 @@
 
 .download-btn {
   color: rgb(13, 12, 34);
-  transform: scale(0.75);
+  transform: scale(0.7);
   position: absolute;
   border-radius: 50%;
   padding: 0.35rem 0.5rem;
@@ -234,6 +234,10 @@
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+}
+
+#plan-header p {
+  padding: 0 20px;
 }
 
 #plan-body {
