@@ -63,7 +63,7 @@ const landing_get = (req, res) => {
 };
 
 const login_get = (req, res) => {
-  res.render('login');
+  res.render('login', { req: req });
 };
 
 const signup_get = (req, res) => {
@@ -77,8 +77,6 @@ const loading_get = async (req, res) => {
   await ai.sendFitnessChatRequest(id);
   await ai.sendDietChatRequest(id);
   await ai.sendNutritionChatRequest(id);
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.open('GET', '/dashboard', true);
 };
 
 const workout_get = (req, res) => {

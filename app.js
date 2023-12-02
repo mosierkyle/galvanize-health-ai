@@ -30,7 +30,7 @@ main();
 
 app.set('view engine', 'ejs');
 
-// Authentication
+//Authentication;
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
@@ -123,7 +123,11 @@ app.post('/sign-up', async (req, res, next) => {
 app.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: 'dashboard',
-    failureRedirect: 'signup',
-  })
+    failureRedirect: '/login',
+    failureMessage:
+      'The password or username you entered does not match what we have in our database. Please try again or select "Forgot" to recover your account.',
+  }),
+  (req, res) => {
+    res.redirect('dashboard');
+  }
 );

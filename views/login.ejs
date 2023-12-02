@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Galvanize Health AI</title>
     <link rel="stylesheet" href="/login.css" />
+    <script src="/loginScript.js" defer></script>
   </head>
   <body>
     <div id="main-container">
@@ -77,6 +78,10 @@
                 name="password"
                 id="password-input"
               />
+              <% if (req.session.messages) { %>
+                <p id="validation" class="error-message"><%= req.session.messages %></p>
+                <% req.session.messages = []; %>
+              <% } %>
             </fieldset>
           </div>
           <button type="submit" class="sign-up-black">Sign In</button>
