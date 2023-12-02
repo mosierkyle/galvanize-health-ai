@@ -72,26 +72,26 @@
             <div class="form-field first-field">
               <fieldset id="name-field" class="input-field">
                 <label for="firstName">First Name</label>
-                <input autocomplete="First Name" class="text-input" type="text" name="firstName" id="user-name">
+                <input required minlength="1" autocomplete="First Name" class="text-input" type="text" name="firstName" id="user-name">
               </fieldset>
             </div>
             <div class="form-field first-field">
               <fieldset class="input-field">
                 <label for="lastName">Last Name</label>
-                <input autocorrect="off" autocomplete="Last Name" class="text-input" type="text" name="lastName" id="user_login">
+                <input required minlength="1" autocorrect="off" autocomplete="Last Name" class="text-input" type="text" name="lastName" id="user_login">
               </fieldset>
             </div>
           </div>
           <div class="form-field">
             <fieldset class="input-field">
               <label for="username">Username or Email</label>
-              <input class="text-input" type="text" name="username" id="use-_email">
+              <input required minlength="4" class="text-input" type="text" name="username" id="use-_email">
             </fieldset>
           </div>
           <div class="form-field">
             <fieldset class="input-field">
               <label for="password">Password</label>
-              <input class="text-input" placeholder="6+ characters" type="password" name="password" id="user-password">
+              <input required minlength="6" class="text-input" placeholder="6+ characters" type="password" name="password" id="user-password">
             </fieldset>
           </div>
           <!-- <div class="form-field">
