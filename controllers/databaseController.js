@@ -50,12 +50,14 @@ async function sendFitnessChatRequest(id) {
       model: 'gpt-3.5-turbo',
       messages: messages[0],
       max_tokens: 50,
+      temperature: 0.2,
     });
 
     const responseBody = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages[1],
       max_tokens: 1000,
+      temperature: 0.2,
     });
 
     try {
@@ -119,12 +121,14 @@ async function sendDietChatRequest(id) {
       model: 'gpt-3.5-turbo',
       messages: messages[0],
       max_tokens: 50,
+      temperature: 0.2,
     });
 
     const responseBody = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages[1],
       max_tokens: 1000,
+      temperature: 0.2,
     });
 
     try {
@@ -188,12 +192,14 @@ async function sendNutritionChatRequest(id) {
       model: 'gpt-3.5-turbo',
       messages: messages[0],
       max_tokens: 50,
+      temperature: 0.2,
     });
 
     const responseBody = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages[1],
       max_tokens: 1000,
+      temperature: 0.2,
     });
 
     try {
