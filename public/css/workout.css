@@ -207,8 +207,8 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 30px;
-  gap: 20px;
+  padding: 30px 50px 30px 40px;
+  gap: 30px;
   overflow: scroll;
   border-radius: 5px;
   position: relative;
@@ -218,6 +218,7 @@
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  color: rgba(8, 129, 120, 1);
 }
 
 #plan-header p {
@@ -304,6 +305,16 @@
     font-size: 18px;
     transition: font-size 0.5s ease;
   }
+}
+
+.response-subheading {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.response-content {
+  font-size: 14px;
+  margin-bottom: 15px;
 }
 
 @media screen and (max-width: 500px) {

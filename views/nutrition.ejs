@@ -78,13 +78,17 @@
         <div id="content">
             <div id="nutrition-plan">
                 <div id="plan-header">
-                    <p>
-                        <%= user.nutritionPlan.title %>
-                    </p>
+                    <p><%= user.nutritionPlan.title.title %></p>
                 </div>
                 <div id="plan-body">
                     <p>
-                        <%= user.nutritionPlan.body %>
+                        <% Object.keys(user.nutritionPlan.body).forEach(function(key) { %>
+                            <% if (key.startsWith('subheading')) { %>
+                                <p class="response-subheading"><%= user.nutritionPlan.body[key] %></p>
+                            <% } else if (key.startsWith('content')) { %>
+                                <p class="response-content"><%= user.nutritionPlan.body[key] %></p>
+                            <% } %>
+                        <% }); %>
                     </p>
                 </div>
                 <a class="download-btn" href="/nutritionPDF/<%= user._id%>">

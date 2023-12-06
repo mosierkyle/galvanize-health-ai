@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 require('dotenv').config();
 
 //OpenAi
-const secretAI = process.env.OPENAI_API_KEY;
+const secretAI = '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';
 
 const openai = new OpenAI({
   apiKey: secretAI,
@@ -28,7 +28,7 @@ async function sendFitnessChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a title for a fitness plan for this user based upon this information about them ${userSummary}.`,
+        content: `Generate a title for a fitness plan for this user based upon this information about them ${userSummary}. No description, just a title. Please return your response in the form of a javascript object, in the format {title: actual title}`,
       },
     ];
 
@@ -40,7 +40,7 @@ async function sendFitnessChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a fitness plan for this user based upon this information about them ${userSummary}. Only include information about a fitness plan, nutrition and diet will be covered elsewhere. Do not introduce your response, just get right into the content`,
+        content: `Generate a fitness plan for this user based upon this information about them ${userSummary}. Only include information about a fitness plan, nutrition and diet will be covered elsewhere. Do not introduce your response, get right into the content. Please return your response in the form of a javascript object (JSON), in the format {subheading1: subheading, content1: content, subheading2: subheading, content2: content...} and so on. This is so I can style your response properly in css. Also make sure the response is in JSON format so I can JSON.parse it. Do not add any unexpected tokens.`,
       },
     ];
 
@@ -58,10 +58,21 @@ async function sendFitnessChatRequest(id) {
       max_tokens: 1000,
     });
 
-    user.fitnessPlan = {
-      title: responseTitle.choices[0].message.content,
-      body: responseBody.choices[0].message.content,
-    };
+    try {
+      user.fitnessPlan = {
+        title: JSON.parse(responseTitle.choices[0].message.content),
+        body: JSON.parse(
+          responseBody.choices[0].message.content
+            .replace(
+              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\/g,
+              ''
+            )
+            .trim()
+        ),
+      };
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+    }
 
     await user.save();
   } catch (err) {
@@ -86,7 +97,7 @@ async function sendDietChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a title for a diet plan for this user based upon this information about them ${userSummary}.`,
+        content: `Generate a title for a diet plan for this user based upon this information about them ${userSummary}. No description, just a title. Please return your response in the form of a javascript object, in the format {title: actual title}`,
       },
     ];
 
@@ -98,7 +109,7 @@ async function sendDietChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a diet plan for this user based upon this information about them ${userSummary}. Only include information about a diet plan, nutrition and fitness will be covered elsewhere. Do not introduce your response, get right into the content`,
+        content: `Generate a diet plan for this user based upon this information about them ${userSummary}. Only include information about a diet plan, nutrition and fitness will be covered elsewhere. Do not introduce your response, get right into the content. Please return your response in the form of a javascript object (JSON), in the format {subheading1: subheading, content1: content, subheading2: subheading, content2: content...} and so on. This is so I can style your response properly in css. Also make sure the response is in JSON format so I can JSON.parse it. Do not add any unexpected tokens.`,
       },
     ];
 
@@ -116,10 +127,21 @@ async function sendDietChatRequest(id) {
       max_tokens: 1000,
     });
 
-    user.dietPlan = {
-      title: responseTitle.choices[0].message.content,
-      body: responseBody.choices[0].message.content,
-    };
+    try {
+      user.dietPlan = {
+        title: JSON.parse(responseTitle.choices[0].message.content),
+        body: JSON.parse(
+          responseBody.choices[0].message.content
+            .replace(
+              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\/g,
+              ''
+            )
+            .trim()
+        ),
+      };
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+    }
 
     await user.save();
   } catch (err) {
@@ -140,11 +162,11 @@ async function sendNutritionChatRequest(id) {
       {
         role: 'system',
         content:
-          'You are a helpful assistant that is very knowledgable about health and fitness, you are a personal trainer/ health coach.',
+          'You are a helpful assistant that is very knowledgable about health and fitness, you are a personal trainer/ health coach. Please return your response in the form of a javascript object, in the format {title: actual title}',
       },
       {
         role: 'user',
-        content: `Generate a title for a Nutrition/supplementaion plan for this user based upon this information about them ${userSummary}. Nutrition means supplimentation, vitamins, etc.`,
+        content: `Generate a title for a Nutrition/supplementaion plan for this user based upon this information about them ${userSummary}. Nutrition means supplimentation, vitamins, etc. No description, just a title. Please return your response in the form of a javascript object, in the format {title: actual title}`,
       },
     ];
 
@@ -156,12 +178,11 @@ async function sendNutritionChatRequest(id) {
       },
       {
         role: 'user',
-        content: `Generate a Supplementation plan for this user based upon this information about them ${userSummary}. Only include information about supplementation/vitamins in the plan, diet and fitness will be covered elsewhere. Nutrition means supplimentation, vitamins, etc. Do not introduce your response, get right into the content`,
+        content: `Generate a Supplementation plan for this user based upon this information about them ${userSummary}. Only include information about supplementation/vitamins in the plan, diet and fitness will be covered elsewhere. Nutrition means supplimentation, vitamins, etc. Do not introduce your response, get right into the content. Please return your response in the form of a javascript object (JSON), in the format {subheading1: subheading, content1: content, subheading2: subheading, content2: content...} and so on. This is so I can style your response properly in css. Also make sure the response is in JSON format so I can JSON.parse it. Do not add any unexpected tokens.`,
       },
     ];
 
     const messages = [[...nutritionTitlePrompt], [...nutritionBodyPrompt]];
-    console.log(messages);
 
     const responseTitle = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -172,13 +193,24 @@ async function sendNutritionChatRequest(id) {
     const responseBody = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages[1],
-      max_tokens: 500,
+      max_tokens: 1000,
     });
 
-    user.nutritionPlan = {
-      title: responseTitle.choices[0].message.content,
-      body: responseBody.choices[0].message.content,
-    };
+    try {
+      user.nutritionPlan = {
+        title: JSON.parse(responseTitle.choices[0].message.content),
+        body: JSON.parse(
+          responseBody.choices[0].message.content
+            .replace(
+              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\/g,
+              ''
+            )
+            .trim()
+        ),
+      };
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+    }
 
     await user.save();
   } catch (err) {

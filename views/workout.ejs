@@ -75,22 +75,44 @@
                 </form>
             </div>
         </div>
-        <div id="content">
+        <!-- <div id="content">
             <div id="workout-plan">
                 <div id="plan-header">
-                    <p><%= user.fitnessPlan.title %></p>
+                    <p><%= //user.fitnessPlan.title %></p>
                 </div>
                 <div id="plan-body">
-                    <p><%= user.fitnessPlan.body %>
+                    <p><%= //user.fitnessPlan.body %>
                     </p>
                 </div>
-                <a class="download-btn" href="/workoutPDF/<%= user._id%>">
+                <a class="download-btn" href="/workoutPDF/<%= //user._id%>">
                     <span class="material-symbols-outlined">
                     download
                     </span>
                 </a>
             </div>
+        </div> -->
+        <div id="content">
+            <div id="workout-plan">
+                <div id="plan-header">
+                    <p><%= user.fitnessPlan.title.title %></p>
+                </div>
+                <div id="plan-body">
+                    <% Object.keys(user.fitnessPlan.body).forEach(function(key) { %>
+                        <% if (key.startsWith('subheading')) { %>
+                            <p class="response-subheading"><%= user.fitnessPlan.body[key] %></p>
+                        <% } else if (key.startsWith('content')) { %>
+                            <p class="response-content"><%= user.fitnessPlan.body[key] %></p>
+                        <% } %>
+                    <% }); %>
+                </div>
+                <a class="download-btn" href="/workoutPDF/<%= user._id %>">
+                    <span class="material-symbols-outlined">
+                        download
+                    </span>
+                </a>
+            </div>
         </div>
+        
     </div>
 </body>
 </html>
