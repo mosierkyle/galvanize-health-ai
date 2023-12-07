@@ -68,7 +68,7 @@ async function sendFitnessChatRequest(id) {
         body: JSON.parse(
           responseBody.choices[0].message.content
             .replace(
-              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\/g,
+              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\|-n/g,
               ''
             )
             .trim()
@@ -139,7 +139,7 @@ async function sendDietChatRequest(id) {
         body: JSON.parse(
           responseBody.choices[0].message.content
             .replace(
-              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\/g,
+              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\|-n/g,
               ''
             )
             .trim()
@@ -210,7 +210,7 @@ async function sendNutritionChatRequest(id) {
         body: JSON.parse(
           responseBody.choices[0].message.content
             .replace(
-              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\/g,
+              /\\|\\n|n\\|\n\\|\\t|t\\|\t\\|\\s|s\\|\s\\|\\r|r\\|\r\\|-n/g,
               ''
             )
             .trim()
