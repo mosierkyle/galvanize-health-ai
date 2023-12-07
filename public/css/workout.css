@@ -256,6 +256,16 @@
   color: rgba(8, 129, 120, 1);
 }
 
+.response-subheading {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.response-content {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
 @media screen and (max-width: 949px) {
   #main-container {
     grid-template-columns: 65px 10fr;
@@ -305,16 +315,6 @@
     font-size: 18px;
     transition: font-size 0.5s ease;
   }
-}
-
-.response-subheading {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.response-content {
-  font-size: 14px;
-  margin-bottom: 15px;
 }
 
 @media screen and (max-width: 500px) {

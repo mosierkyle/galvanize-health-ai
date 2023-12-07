@@ -1,10 +1,12 @@
 const User = require('../models/user');
 const OpenAI = require('openai');
 const puppeteer = require('puppeteer');
+const path = require('path');
+const ejs = require('ejs');
 require('dotenv').config();
 
 //OpenAi
-const secretAI = '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';
+const secretAI = process.env.OPENAI_API_KEY;
 
 const openai = new OpenAI({
   apiKey: secretAI,
@@ -291,23 +293,23 @@ const goals_post = async (req, res) => {
 const generateWorkoutPDF = async (req, res) => {
   const id = req.params.id;
   try {
-    // Fetch user data from MongoDB
     const user = await User.findById(id);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Construct the content for the PDF
-    const content = `
-      <h1>${user.fitnessPlan.title}</h1>
-      <p>${user.fitnessPlan.body}</p>
-    `;
+    const templatePath =
+      '/Users/kylemosier/repos/Galvanize-Health-Full-Stack/views/PDF-templates/workoutTemplate.ejs';
+
+    const htmlTemplateFitness = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
-    await page.setContent(content, { waitUntil: 'domcontentloaded' });
+    await page.setContent(htmlTemplateFitness, {
+      waitUntil: 'domcontentloaded',
+    });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
 
     // Close the browser
@@ -337,15 +339,15 @@ const generateDietPDF = async (req, res) => {
     }
 
     // Construct the content for the PDF
-    const content = `
-      <h1>${user.dietPlan.title}</h1>
-      <p>${user.dietPlan.body}</p>
-    `;
+    const templatePath =
+      '/Users/kylemosier/repos/Galvanize-Health-Full-Stack/views/PDF-templates/dietTemplate.ejs';
+
+    const htmlTemplateDiet = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
-    await page.setContent(content, { waitUntil: 'domcontentloaded' });
+    await page.setContent(htmlTemplateDiet, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
 
     // Close the browser
@@ -371,16 +373,17 @@ const generateNutritionPDF = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Construct the content for the PDF
-    const content = `
-      <h1>${user.nutritionPlan.title}</h1>
-      <p>${user.nutritionPlan.body}</p>
-    `;
+    const templatePath =
+      '/Users/kylemosier/repos/Galvanize-Health-Full-Stack/views/PDF-templates/nutritionTemplate.ejs';
+
+    const htmlTemplateNutrition = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
-    await page.setContent(content, { waitUntil: 'domcontentloaded' });
+    await page.setContent(htmlTemplateNutrition, {
+      waitUntil: 'domcontentloaded',
+    });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
 
     // Close the browser
