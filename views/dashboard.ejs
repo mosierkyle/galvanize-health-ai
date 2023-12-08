@@ -81,55 +81,18 @@
             </div>
         </div>
         <div id="content">
-            <a class="panel" id="workout" href="/workout">
-                    <div class="panel-header-div">
-                        <p class="panel-header">Workout Plan</p>
-                    </div>
-                    <div class="panel-preview">
-                            <% Object.keys(user.fitnessPlan.body).forEach(function(key) { %>
-                                <% if (key.startsWith('subheading')) { %>
-                                    <p class="response-subheading"><%= user.fitnessPlan.body[key] %></p>
-                                <% } else if (key.startsWith('content')) { %>
-                                    <p class="response-content"><%= user.fitnessPlan.body[key] %></p>
-                                <% } %>
-                            <% }); %>
-                    </div>
-            </a>
-            <a href="/diet" class="panel" id="diet">
-                    <div class="panel-header-div">
-                        <p class="panel-header">Diet Plan</p>
-                    </div>
-                    <div class="panel-preview">
-                            <% Object.keys(user.dietPlan.body).forEach(function(key) { %>
-                                <% if (key.startsWith('subheading')) { %>
-                                    <p class="response-subheading"><%= user.dietPlan.body[key] %></p>
-                                <% } else if (key.startsWith('content')) { %>
-                                    <p class="response-content"><%= user.dietPlan.body[key] %></p>
-                                <% } %>
-                            <% }); %>
-                    </div>
-            </a>
-            <a class="panel" id="nutrition" href="/nutrition">
-                    <div class="panel-header-div">
-                        <p class="panel-header">Nutrition Plan</p>
-                    </div>
-                    <div class="panel-preview">
-                            <% Object.keys(user.nutritionPlan.body).forEach(function(key) { %>
-                                <% if (key.startsWith('subheading')) { %>
-                                    <p class="response-subheading"><%= user.nutritionPlan.body[key] %></p>
-                                <% } else if (key.startsWith('content')) { %>
-                                    <p class="response-content"><%= user.nutritionPlan.body[key] %></p>
-                                <% } %>
-                            <% }); %>
-                    </div>
-            </a>
             <a class="panel" id="user-info" href="">
-                <div id="user-header-div" class="panel-header-div">
-                    <!-- <span id="user-profile" class="material-symbols-outlined">
-                        account_circle
-                        </span> -->
+                <!-- <div id="user-header-div" class="panel-header-div">
                     <p id="user-panel-header" class="panel-header">Profile</p>
-                </div>
+                </div> -->
+                <div id="user-info-content">
+                    <div id="user-heading">
+                        <span id="user-img"class="material-symbols-outlined">
+                            account_circle
+                            </span>
+                        <p id="user-name"><%= user.firstName %> <%= user.lastName %></p>
+                        <p id="user-username">@<%= user.username %></p>
+                    </div>
                     <div id="user-health">
                         <div class="user-health-div">
                             <p class="user-health-title">Weight</p>
@@ -144,15 +107,76 @@
                             <div class="user-health-num"><%= user.health.age %></div>
                         </div>
                     </div>
-                <div id="user-experience">
+                <div class="profile-info-div" id="user-activity">
+                    <p class="user-thing-title">Activity</p>
+                    <p class="user-thing-content"><%= user.health.activity%></p>
+                </div>
+                <div class="profile-info-div" id="user-experience">
                     <p class="user-thing-title">Level</p>
                     <p class="user-thing-content"><%= user.health.skillLevel %></p>
                 </div>
-                <div id="user-goal">
+                <div class="profile-info-div" id="user-time">
+                    <p class="user-thing-title">Time Availability</p>
+                    <p class="user-thing-content"><%= user.health.timeAvailability %></p>
+                </div>
+                <div class="profile-info-div" id="user-exercises">
+                    <p class="user-thing-title">Preffered Exercises</p>
+                    <p class="user-thing-content"><%= user.health.prefferedExercise %></p>
+                </div>
+                <div class="profile-info-div" id="user-goal">
                     <p class="user-thing-title">Goal</p>
-                    <p class="user-thing-content">This is supposed to be a really long goal section just to test out what happens when this text overflows so I can handle it properly and make sure that it does look bad, realistically though everybody should have the same goal and it should be to get absolutely huge so this section should only be 4 words long. Looks like I am going to need to add more goals here just to completely suprasss the limits and see what it looks like shoutout chat gpt for helping me make this project</p>
+                    <p class="user-thing-content"><%= user.goals.overall %></p>
+                </div>
                 </div>
         </a>
+            <a class="panel" id="workout" href="/workout">
+                    <div class="panel-header-div">
+                        <p class="panel-header">Workout Plan</p>
+                    </div>
+                    <div class="mask">
+                        <div class="panel-preview">
+                            <% Object.keys(user.fitnessPlan.body).forEach(function(key) { %>
+                                <% if (key.startsWith('subheading')) { %>
+                                    <p class="response-subheading"><%= user.fitnessPlan.body[key] %></p>
+                                <% } else if (key.startsWith('content')) { %>
+                                    <p class="response-content"><%= user.fitnessPlan.body[key] %></p>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                    </div>
+            </a>
+            <a href="/diet" class="panel" id="diet">
+                    <div class="panel-header-div">
+                        <p class="panel-header">Diet Plan</p>
+                    </div>
+                    <div class="mask">
+                        <div class="panel-preview">
+                            <% Object.keys(user.dietPlan.body).forEach(function(key) { %>
+                                <% if (key.startsWith('subheading')) { %>
+                                    <p class="response-subheading"><%= user.dietPlan.body[key] %></p>
+                                <% } else if (key.startsWith('content')) { %>
+                                    <p class="response-content"><%= user.dietPlan.body[key] %></p>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                    </div>
+            </a>
+            <a class="panel" id="nutrition" href="/nutrition">
+                    <div class="panel-header-div">
+                        <p class="panel-header">Nutrition Plan</p>
+                    </div>
+                    <div class="mask">
+                        <div class="panel-preview">
+                            <% Object.keys(user.nutritionPlan.body).forEach(function(key) { %>
+                                <% if (key.startsWith('subheading')) { %>
+                                    <p class="response-subheading"><%= user.nutritionPlan.body[key] %></p>
+                                <% } else if (key.startsWith('content')) { %>
+                                    <p class="response-content"><%= user.nutritionPlan.body[key] %></p>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                    </div>
+            </a>
         </div>
     </div>
 </body>
