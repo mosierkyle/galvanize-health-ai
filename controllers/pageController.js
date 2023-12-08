@@ -18,7 +18,7 @@ const goals_questions_get = (req, res) => {
     return res.redirect('error');
   }
   res.locals.currentUser = req.user;
-  if (res.locals.currentUser.goals) {
+  if (res.locals.currentUser.nutritionPlan) {
     return res.render('dashboard', { user: res.locals.currentUser });
   }
   res.render('goals-questions', { user: res.locals.currentUser });
