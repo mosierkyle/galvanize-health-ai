@@ -14,14 +14,12 @@ const health_questions_get = (req, res) => {
 };
 
 const goals_questions_get = (req, res) => {
-  //   res.locals.currentUser = req.user;
-  //   if (res.locals.currentUser) {
-  //     res.render('goals-questions', { user: res.locals.currentUser });
-  //   } else {
-  //     res.render('401');
-  //   }
   if (!req.user) {
     return res.redirect('error');
+  }
+  res.locals.currentUser = req.user;
+  if (res.locals.currentUser.goals) {
+    return res.render('dashboard', { user: res.locals.currentUser });
   }
   res.render('goals-questions', { user: res.locals.currentUser });
 };
