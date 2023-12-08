@@ -12,7 +12,7 @@
     <div id="main-container">
         <div id="header">
             <div id="welcome">
-                <div id="welcome-text">Welcome back <span id="user"><%= user.firstName %></span></div>
+                <div id="welcome-text">Welcome, <span id="user"><%= user.firstName %></span></div>
             </div>
             <div id="search">
                 <div id="search-bar-div">
@@ -69,11 +69,6 @@
                                 <span class="menu-item">Nutrition</span>
                         </li>
                     </a>
-                    <!-- <li class="item">
-                        <span class="list-svg material-symbols-outlined">
-                            live_help
-                        </span>   Help
-                    </li> -->
                 </ul>
               </div>
             <div id="logout-div" class="item">
@@ -91,11 +86,13 @@
                         <p class="panel-header">Workout Plan</p>
                     </div>
                     <div class="panel-preview">
-                        <div class="skeleton skeleton1"> </div>
-                        <div class="skeleton skeleton2"> </div>
-                        <div class="skeleton skeleton3"> </div>
-                        <div class="skeleton skeleton4"> </div>
-                        <div class="skeleton skeleton5"> </div>
+                            <% Object.keys(user.fitnessPlan.body).forEach(function(key) { %>
+                                <% if (key.startsWith('subheading')) { %>
+                                    <p class="response-subheading"><%= user.fitnessPlan.body[key] %></p>
+                                <% } else if (key.startsWith('content')) { %>
+                                    <p class="response-content"><%= user.fitnessPlan.body[key] %></p>
+                                <% } %>
+                            <% }); %>
                     </div>
             </a>
             <a href="/diet" class="panel" id="diet">
@@ -103,11 +100,13 @@
                         <p class="panel-header">Diet Plan</p>
                     </div>
                     <div class="panel-preview">
-                        <div class="skeleton skeleton1"> </div>
-                        <div class="skeleton skeleton2"> </div>
-                        <div class="skeleton skeleton3"> </div>
-                        <div class="skeleton skeleton4"> </div>
-                        <div class="skeleton skeleton5"> </div>
+                            <% Object.keys(user.dietPlan.body).forEach(function(key) { %>
+                                <% if (key.startsWith('subheading')) { %>
+                                    <p class="response-subheading"><%= user.dietPlan.body[key] %></p>
+                                <% } else if (key.startsWith('content')) { %>
+                                    <p class="response-content"><%= user.dietPlan.body[key] %></p>
+                                <% } %>
+                            <% }); %>
                     </div>
             </a>
             <a class="panel" id="nutrition" href="/nutrition">
@@ -115,14 +114,45 @@
                         <p class="panel-header">Nutrition Plan</p>
                     </div>
                     <div class="panel-preview">
-                        <div class="skeleton skeleton1"> </div>
-                        <div class="skeleton skeleton2"> </div>
-                        <div class="skeleton skeleton3"> </div>
-                        <div class="skeleton skeleton4"> </div>
-                        <div class="skeleton skeleton5"> </div>
+                            <% Object.keys(user.nutritionPlan.body).forEach(function(key) { %>
+                                <% if (key.startsWith('subheading')) { %>
+                                    <p class="response-subheading"><%= user.nutritionPlan.body[key] %></p>
+                                <% } else if (key.startsWith('content')) { %>
+                                    <p class="response-content"><%= user.nutritionPlan.body[key] %></p>
+                                <% } %>
+                            <% }); %>
                     </div>
             </a>
-            
+            <a class="panel" id="user-info" href="">
+                <div id="user-header-div" class="panel-header-div">
+                    <!-- <span id="user-profile" class="material-symbols-outlined">
+                        account_circle
+                        </span> -->
+                    <p id="user-panel-header" class="panel-header">Profile</p>
+                </div>
+                    <div id="user-health">
+                        <div class="user-health-div">
+                            <p class="user-health-title">Weight</p>
+                            <div class="user-health-num"><%= user.health.weight %> lb</div>
+                        </div>
+                        <div class="user-health-div">
+                            <p class="user-health-title">Height</p>
+                            <div class="user-health-num"><%= user.health.height %></div>
+                        </div>
+                        <div class="user-health-div">
+                            <p class="user-health-title">Age</p>
+                            <div class="user-health-num"><%= user.health.age %></div>
+                        </div>
+                    </div>
+                <div id="user-experience">
+                    <p class="user-thing-title">Level</p>
+                    <p class="user-thing-content"><%= user.health.skillLevel %></p>
+                </div>
+                <div id="user-goal">
+                    <p class="user-thing-title">Goal</p>
+                    <p class="user-thing-content">This is supposed to be a really long goal section just to test out what happens when this text overflows so I can handle it properly and make sure that it does look bad, realistically though everybody should have the same goal and it should be to get absolutely huge so this section should only be 4 words long. Looks like I am going to need to add more goals here just to completely suprasss the limits and see what it looks like shoutout chat gpt for helping me make this project</p>
+                </div>
+        </a>
         </div>
     </div>
 </body>
