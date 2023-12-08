@@ -300,7 +300,7 @@ const generateWorkoutPDF = async (req, res) => {
     }
 
     const templatePath =
-      '/Users/kylemosier/repos/Galvanize-Health-Full-Stack/views/workoutTemplate.ejs';
+      '/Galvanize-Health-Full-Stack/views/workoutTemplate.ejs';
 
     const htmlTemplateFitness = await ejs.renderFile(templatePath, { user });
 
@@ -339,8 +339,7 @@ const generateDietPDF = async (req, res) => {
     }
 
     // Construct the content for the PDF
-    const templatePath =
-      '/Users/kylemosier/repos/Galvanize-Health-Full-Stack/views/dietTemplate.ejs';
+    const templatePath = '/Galvanize-Health-Full-Stack/views/dietTemplate.ejs';
 
     const htmlTemplateDiet = await ejs.renderFile(templatePath, { user });
 
@@ -374,7 +373,7 @@ const generateNutritionPDF = async (req, res) => {
     }
 
     const templatePath =
-      '/Users/kylemosier/repos/Galvanize-Health-Full-Stack/views/nutritionTemplate.ejs';
+      '/Galvanize-Health-Full-Stack/views/nutritionTemplate.ejs';
 
     const htmlTemplateNutrition = await ejs.renderFile(templatePath, { user });
 
