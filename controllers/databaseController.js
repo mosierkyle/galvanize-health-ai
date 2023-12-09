@@ -305,7 +305,7 @@ const generateWorkoutPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       executablePath:
         '/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome',
     });
@@ -348,7 +348,7 @@ const generateDietPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       executablePath:
         '/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome',
     });
@@ -385,7 +385,7 @@ const generateNutritionPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       executablePath:
         '/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome',
     });
