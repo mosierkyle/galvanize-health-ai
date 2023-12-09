@@ -306,12 +306,16 @@ const generateWorkoutPDF = async (req, res) => {
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
       headless: 'new',
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      executablePath:
+        process.env.NODE_ENV === 'production'
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
       args: [
         '--disable-setuid-sandbox',
         '--no-sandbox',
         '--single-process',
         '--zygote',
+        '--disable-dev-shm-usage',
       ],
     });
     const page = await browser.newPage();
@@ -360,6 +364,7 @@ const generateDietPDF = async (req, res) => {
         '--no-sandbox',
         '--single-process',
         '--zygote',
+        '--disable-dev-shm-usage',
       ],
     });
     const page = await browser.newPage();
@@ -402,6 +407,7 @@ const generateNutritionPDF = async (req, res) => {
         '--no-sandbox',
         '--single-process',
         '--zygote',
+        '--disable-dev-shm-usage',
       ],
     });
     const page = await browser.newPage();
