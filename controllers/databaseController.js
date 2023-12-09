@@ -305,7 +305,7 @@ const generateWorkoutPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       executablePath:
         process.env.NODE_ENV === 'production'
           ? process.env.PUPPETEER_EXECUTABLE_PATH
@@ -357,7 +357,7 @@ const generateDietPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
       args: [
         '--disable-setuid-sandbox',
@@ -400,7 +400,7 @@ const generateNutritionPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
       args: [
         '--disable-setuid-sandbox',
