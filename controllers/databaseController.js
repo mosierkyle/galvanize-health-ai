@@ -384,7 +384,6 @@ const generateNutritionPDF = async (req, res) => {
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
       headless: 'new',
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/',
     });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateNutrition, {
