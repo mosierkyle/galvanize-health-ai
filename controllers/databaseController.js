@@ -304,7 +304,7 @@ const generateWorkoutPDF = async (req, res) => {
     const htmlTemplateFitness = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({ headless: 'true' });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateFitness, {
       waitUntil: 'domcontentloaded',
@@ -323,7 +323,7 @@ const generateWorkoutPDF = async (req, res) => {
     res.send(pdfBuffer);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.redirect('/error');
   }
 };
 
@@ -343,7 +343,7 @@ const generateDietPDF = async (req, res) => {
     const htmlTemplateDiet = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({ headless: 'true' });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateDiet, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
@@ -357,7 +357,7 @@ const generateDietPDF = async (req, res) => {
     res.send(pdfBuffer);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.redirect('/error');
   }
 };
 
@@ -377,9 +377,7 @@ const generateNutritionPDF = async (req, res) => {
 
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
-      headless: 'new',
-      executablePath:
-        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      headless: 'true',
     });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateNutrition, {
@@ -399,7 +397,7 @@ const generateNutritionPDF = async (req, res) => {
     res.send(pdfBuffer);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.redirect('/error');
   }
 };
 
