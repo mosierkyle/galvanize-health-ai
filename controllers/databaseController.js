@@ -299,8 +299,7 @@ const generateWorkoutPDF = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const templatePath =
-      'Galvanize-Health-Full-Stack/views/workoutTemplate.ejs';
+    const templatePath = 'views/workoutTemplate.ejs';
 
     const htmlTemplateFitness = await ejs.renderFile(templatePath, { user });
 
@@ -339,7 +338,7 @@ const generateDietPDF = async (req, res) => {
     }
 
     // Construct the content for the PDF
-    const templatePath = '/views/dietTemplate.ejs';
+    const templatePath = 'views/dietTemplate.ejs';
 
     const htmlTemplateDiet = await ejs.renderFile(templatePath, { user });
 
@@ -377,7 +376,11 @@ const generateNutritionPDF = async (req, res) => {
     const htmlTemplateNutrition = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+      headless: 'new',
+      executablePath:
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateNutrition, {
       waitUntil: 'domcontentloaded',
