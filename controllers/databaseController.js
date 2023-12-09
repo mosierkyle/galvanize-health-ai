@@ -306,7 +306,13 @@ const generateWorkoutPDF = async (req, res) => {
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
       headless: 'new',
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/',
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      args: [
+        '--disable-setuid-sandbox',
+        '--no-sandbox',
+        '--single-process',
+        '--zygote',
+      ],
     });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateFitness, {
@@ -348,7 +354,13 @@ const generateDietPDF = async (req, res) => {
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
       headless: 'new',
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/',
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      args: [
+        '--disable-setuid-sandbox',
+        '--no-sandbox',
+        '--single-process',
+        '--zygote',
+      ],
     });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateDiet, { waitUntil: 'domcontentloaded' });
@@ -384,6 +396,13 @@ const generateNutritionPDF = async (req, res) => {
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
       headless: 'new',
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      args: [
+        '--disable-setuid-sandbox',
+        '--no-sandbox',
+        '--single-process',
+        '--zygote',
+      ],
     });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateNutrition, {
