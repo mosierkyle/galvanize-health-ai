@@ -304,7 +304,11 @@ const generateWorkoutPDF = async (req, res) => {
     const htmlTemplateFitness = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch({ headless: 'true' });
+    const browser = await puppeteer.launch({
+      headless: 'true',
+      executablePath:
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateFitness, {
       waitUntil: 'domcontentloaded',
@@ -343,7 +347,11 @@ const generateDietPDF = async (req, res) => {
     const htmlTemplateDiet = await ejs.renderFile(templatePath, { user });
 
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch({ headless: 'true' });
+    const browser = await puppeteer.launch({
+      headless: 'true',
+      executablePath:
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateDiet, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'Letter' });
@@ -378,6 +386,8 @@ const generateNutritionPDF = async (req, res) => {
     // Generate PDF using Puppeteer
     const browser = await puppeteer.launch({
       headless: 'true',
+      executablePath:
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     });
     const page = await browser.newPage();
     await page.setContent(htmlTemplateNutrition, {
