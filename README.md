@@ -10,7 +10,7 @@ Galvanize Health is an AI powered health and fitness web application. It helps y
 <br>
 live demo here:
 https://galvanize-health-ai.onrender.com/
-<br>
-Preview:
+
+<br>Preview:
 ![preview-home](public/logos/preview-home.png)
 ![preview-dashboard](public/logos/preview-dashboard.png)
