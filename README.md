@@ -7,7 +7,7 @@ Galvanize Health is an AI powered health and fitness web application. It helps y
 <li>Answer a few more questions about your goals</li>
 <li>Recieve a fully personalized fitness plan, diet plan, and supplimentation plan</li>
 <li>Download and save plan for reference</li>
-
+<br>
 live demo here:
 https://galvanize-health-ai.onrender.com/
 
