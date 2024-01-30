@@ -1,6 +1,12 @@
-# Galvanize-Health-Full-Stack
+# Galvanize Health AI
 
-AI powered health and fitness web app. Creates a tailored Fitness, Diet, and Workout plan based on your goals and condition. Made with Node.js, Express.js, MongoDB, and EJS.
+Galvanize Health is an AI powered health and fitness web application. It helps you get started on your health and fitness journey by building you a custom Fitness, Diet, and Supplimentation plan for FREE.
+
+<li>Create an Account</li>
+<li>Answer some questions about your current health condition</li>
+<li>Answer a few more questions about your goals</li>
+<li>Recieve a fully personalized fitness plan, diet plan, and supplimentation plan</li>
+<li>Download and save plan for reference</li>
 
 live demo here:
 https://galvanize-health-ai.onrender.com/
